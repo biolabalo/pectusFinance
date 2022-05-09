@@ -1,11 +1,13 @@
 /* eslint-disable no-nested-ternary */
 import { useState } from 'react';
+import { ColumnInt } from './TableBody';
 
-function TableHead({ columns, handleSorting }) {
+// eslint-disable-next-line max-len
+function TableHead({ columns, handleSorting }: { columns: ColumnInt[], handleSorting : (accessor: string, sortOrder: string) => void }) {
   const [sortField, setSortField] = useState('');
   const [order, setOrder] = useState('asc');
 
-  const handleSortingChange = (accessor) => {
+  const handleSortingChange = (accessor: string) => {
     const sortOrder = accessor === sortField && order === 'asc' ? 'desc' : 'asc';
     setSortField(accessor);
     setOrder(sortOrder);
@@ -26,7 +28,9 @@ function TableHead({ columns, handleSorting }) {
           return (
             <th
               key={accessor}
-              onClick={sortable ? () => handleSortingChange(accessor) : null}
+              onClick={() => {
+                if (sortable) handleSortingChange(accessor);
+              }}
               className={cl}
             >
               {label}

@@ -26,6 +26,7 @@
         "no-shadow": "off",
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
+        "react/no-array-index-key": "off",
         "@typescript-eslint/no-shadow": ["error"],
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],

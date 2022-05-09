@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import * as React from 'react';
 import mockdata from '../data.json';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
 
 function Table() {
-  const [tableData, setTableData] = useState(mockdata);
+  const [tableData, setTableData] = React.useState(mockdata);
 
   const columns = [
     { label: 'Departments', accessor: 'departments', sortable: true },
@@ -22,16 +22,12 @@ function Table() {
         sorted = sortOrder === 'asc' ? [...tableData].sort((a, b) => parseFloat(a.amount.replace(/(^\$|,)/g, '')) - parseFloat(b.amount.replace(/(^\$|,)/g, '')))
           : [...tableData].sort((a, b) => parseFloat(b.amount.replace(/(^\$|,)/g, '')) - parseFloat(a.amount.replace(/(^\$|,)/g, '')));
       } else {
-        sorted = [...tableData].sort((a, b) => {
-          if (a[sortField] === null) return 1;
-          if (b[sortField] === null) return -1;
-          if (a[sortField] === null && b[sortField] === null) return 0;
-          return (
-            a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
-              numeric: true,
-            }) * (sortOrder === 'asc' ? 1 : -1)
-          );
-        });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        sorted = [...tableData].sort((a: any, b: any) => (
+          a[sortField].toString().localeCompare(b[sortField].toString(), 'en', {
+            numeric: true,
+          }) * (sortOrder === 'asc' ? 1 : -1)
+        ));
       }
 
       setTableData(sorted);

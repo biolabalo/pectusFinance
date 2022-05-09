@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
 import styled from 'styled-components';
@@ -33,25 +34,26 @@ const projectName = 'project_name';
 const date = 'date';
 const name = 'member_name';
 
-const title = {
-  [departments]: 'Departments',
-  [projectName]: 'Project Name',
-  [date]: 'Date',
-  [name]: 'Name',
-};
+function getTitle(option: string):string {
+  if (option === departments) return 'Departments';
+  if (option === projectName) return 'Project Name';
+  if (option === date) return 'Date';
+  if (option === name) return 'Name';
+  return 'nil';
+}
 
 function GroupedTable() {
   const [selectedOption, setSelectedOption] = useState(departments);
 
-  const selectedOptionData = [...new Set(mockdata.map((item) => item[selectedOption]))];
+  const selectedOptionData = [...new Set(mockdata.map((item: any) => item[selectedOption]))];
 
   const derivedFinancialCalculation = selectedOptionData.map((eachOption) => ({
     [eachOption]: mockdata
-      .filter((e) => e[selectedOption] === eachOption)
+      .filter((e: any) => e[selectedOption] === eachOption)
       .map((e) => e.amount),
   }));
 
-  const addValues = (values) => {
+  const addValues = (values: Array<string>) => {
     const pureDigits = values.map((e: string) => parseFloat(e.replace(/(^\$|,)/g, '')));
     return pureDigits.reduce((partialSum: any, a: any) => partialSum + a, 0);
   };
@@ -72,7 +74,7 @@ function GroupedTable() {
       <table className="table-resp">
         <thead>
           <tr>
-            <th>{title[selectedOption]}</th>
+            <th>{getTitle(selectedOption)}</th>
             <th>Amount</th>
           </tr>
         </thead>
