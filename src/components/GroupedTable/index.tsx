@@ -98,7 +98,10 @@ function GroupedTable() {
             <td> Total Amount:</td>
             <td>
               {' '}
-              <b>{totalAmount}</b>
+              <b>
+                {totalAmount}
+                .00€
+              </b>
             </td>
           </tr>
 
