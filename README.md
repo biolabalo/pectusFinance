@@ -18,7 +18,7 @@
 ![Home page](./screenshots/project.png "records sorted by project name")
 
 ## A short explanation of what I built
--  a mini react app built to calcluate from mock CSV data, result can be gropued per category
+-  a mini react app built to calcluate from mock CSV data, result can be grouped per category
 
 ## How to run/test/demo 
  
