@@ -20,7 +20,7 @@
         "react",
         "@typescript-eslint",
         "react-hooks",
-        "plugin: cypress/recommended"
+        "plugin:cypress/recommended"
     ],
     "rules": {
         "no-use-before-define": "off",
