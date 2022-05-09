@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import mockdata from '../data.json';
 import TableBody from './TableBody';
 import TableHead from './TableHead';
@@ -36,6 +37,7 @@ function Table() {
 
   return (
     <div className="table_container">
+      <Link to="/group"> View grouped result</Link>
       <table className="table">
         <TableHead {...{ columns, handleSorting }} />
         <TableBody {...{ columns, tableData }} />

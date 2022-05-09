@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-array-index-key */
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import mockdata from '../../data.json';
 
@@ -60,6 +61,7 @@ function GroupedTable() {
 
   return (
     <Wrapper>
+      <Link to="/"> Back to home</Link>
       <Select
         onChange={(e) => setSelectedOption(e.target.value)}
       >
