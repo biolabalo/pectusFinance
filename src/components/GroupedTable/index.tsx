@@ -56,8 +56,13 @@ function GroupedTable() {
 
   const addValues = (values: Array<string>) => {
     const pureDigits = values.map((e: string) => parseFloat(e.replace(/(^\$|,)/g, '')));
-    return pureDigits.reduce((partialSum: any, a: any) => partialSum + a, 0);
+    const eachSum = pureDigits.reduce((partialSum: any, a: any) => partialSum + a, 0);
+    return eachSum;
   };
+
+  const totalAmount = derivedFinancialCalculation
+    .map((e) => Object.values(e)).flat(5).map((e: string) => parseFloat(e.replace(/(^\$|,)/g, '')))
+    .reduce((partialSum: any, a: any) => partialSum + a, 0);
 
   return (
     <Wrapper>
@@ -89,6 +94,16 @@ function GroupedTable() {
               <td>{ addValues(Object.values(eachOption)[0])}</td>
             </tr>
           ))}
+          <tr>
+            <td> Total Amount:</td>
+            <td>
+              {' '}
+              <b>{totalAmount}</b>
+            </td>
+          </tr>
+
+          {' '}
+
         </tbody>
       </table>
     </Wrapper>
